@@ -47,7 +47,7 @@ class Terrain(object):
         modeln = 'mobilenet_thin'
         modelr = '432x368'
         #Here we have to change the source and video name
-        camera = './tf-pose-estimation/test1-2.mp4'
+        camera = './skeleton_humanactivity/videos/test1-2.mp4'
 
         self.lines = {}
         self.connection = [
@@ -60,7 +60,7 @@ class Terrain(object):
         self.e = TfPoseEstimator(get_graph_path(modeln), target_size=(w, h))
         self.cam = cv2.VideoCapture(camera)
         ret_val, image = self.cam.read()
-        self.poseLifting = Prob3dPose('./tf-pose-estimation/lifting/models/prob_model_params.mat')
+        self.poseLifting = Prob3dPose('./skeleton_humanactivity/lifting/models/prob_model_params.mat')
         keypoints = self.mesh(image)
 
         self.points = gl.GLScatterPlotItem(

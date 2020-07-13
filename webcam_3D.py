@@ -59,7 +59,7 @@ class Terrain(object):
         self.e = TfPoseEstimator(get_graph_path(modeln), target_size=(w, h))
         self.cam = cv2.VideoCapture(camera)
         ret_val, image = self.cam.read()
-        self.poseLifting = Prob3dPose('./tf-pose-estimation/lifting/models/prob_model_params.mat')
+        self.poseLifting = Prob3dPose('./skeleton_humanactivity/lifting/models/prob_model_params.mat')
         keypoints = self.mesh(image)
 
         self.points = gl.GLScatterPlotItem(
