@@ -1,37 +1,21 @@
-# tf-pose-estimation
-
-'Openpose', human pose estimation algorithm, have been implemented using Tensorflow. It also provides several variants that have some changes to the network structure for **real-time processing on the CPU or low-power embedded devices.**
-
-**You can even run this on your macbook with a descent FPS!**
-
-Original Repo(Caffe) : https://github.com/CMU-Perceptual-Computing-Lab/openpose
-
-| CMU's Original Model</br> on Macbook Pro 15" | Mobilenet-thin </br>on Macbook Pro 15" | Mobilenet-thin</br>on Jetson TX2 |
-|:---------|:--------------------|:----------------|
-| ![cmu-model](/etcs/openpose_macbook_cmu.gif)     | ![mb-model-macbook](/etcs/openpose_macbook_mobilenet3.gif) | ![mb-model-tx2](/etcs/openpose_tx2_mobilenet3.gif) |
-| **~0.6 FPS** | **~4.2 FPS** @ 368x368 | **~10 FPS** @ 368x368 |
-| 2.8GHz Quad-core i7 | 2.8GHz Quad-core i7 | Jetson TX2 Embedded Board | 
-
-Implemented features are listed here : [features](./etcs/feature.md)
-
-## Important Updates
-
-- 2019.3.12 Add new models using mobilenet-v2 architecture. See : [experiments.md](./etcs/experiments.md)
-- 2018.5.21 Post-processing part is implemented in c++. It is required compiling the part. See: https://github.com/ildoonet/tf-pose-estimation/tree/master/src/pafprocess
-- 2018.2.7 Arguments in run.py script changed. Support dynamic input size.
-
 ## Install
-
 ### Dependencies
 
 You need dependencies below.
-
 - python3
 - tensorflow 1.4.1+
 - opencv3, protobuf, python3-tk
 - slidingwindow
   - https://github.com/adamrehn/slidingwindow
   - I copied from the above git repo to modify few things.
+  
+Personally, I used the next dependencies:
+Dedicate use of GPU:
+-Cuda v.10
+-cuDNN v7.4
+Other dependencies:
+- python3
+- tensorflow 1.4.1
 
 ### Pre-Install Jetson case
 
@@ -45,8 +29,8 @@ $ export LLVM_CONFIG=/usr/bin/llvm-config-7
 Clone the repo and install 3rd-party libraries.
 
 ```bash
-$ git clone https://www.github.com/ildoonet/tf-pose-estimation
-$ cd tf-pose-estimation
+$ git clone https://github.com/paulnajera/skeleton_humanactivity.git
+$ cd skeleton_humanactivity
 $ pip3 install -r requirements.txt
 ```
 
@@ -54,16 +38,6 @@ Build c++ library for post processing. See : https://github.com/ildoonet/tf-pose
 ```
 $ cd tf_pose/pafprocess
 $ swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace
-```
-
-### Package Install
-
-Alternatively, you can install this repo as a shared package using pip.
-
-```bash
-$ git clone https://www.github.com/ildoonet/tf-pose-estimation
-$ cd tf-pose-estimation
-$ python setup.py install  # Or, `pip install -e .`
 ```
 
 ## Models & Performances
