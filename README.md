@@ -21,7 +21,7 @@ Other dependencies:
 Operative System:
 - Windows 10
 
-### Install
+### Steps
 
 Clone the repo and install 3rd-party libraries.
 
@@ -34,7 +34,7 @@ If there is a problem installing the requiremets (related to MVS and pycocotools
 https://www.kaggle.com/c/tgs-salt-identification-challenge/discussion/62381
 
 Build c++ library for post processing. See : https://github.com/ildoonet/tf-pose-estimation/tree/master/tf_pose/pafprocess
-*(wig have to be installed in order to run this command)
+(wig have to be installed in order to run this command)
 ```
 $ cd tf_pose/pafprocess
 $ swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace
@@ -127,13 +127,6 @@ See [run.py](run.py) or [run_webcam.py](run_webcam.py) as references.
 e = TfPoseEstimator(get_graph_path(args.model), target_size=(w, h))
 humans = e.inference(image)
 image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
-```
-
-If you installed it as a package,
-
-```python
-import tf_pose
-coco_style = tf_pose.infer(image_path)
 ```
 
 ## ROS Support
