@@ -64,6 +64,8 @@ $ bash download.sh
 
 ### Test Inference
 
+In order to test the next steps, the model have to be downloaded.
+
 You can test the inference feature with a single image.
 
 ```
