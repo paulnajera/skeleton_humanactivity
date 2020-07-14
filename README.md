@@ -117,7 +117,11 @@ $ python webcam_3D.pz
 $ python video_3D.py
 ```
 
+Video source shoul be specified in line 50:
 
+```
+camera = './skeleton_humanactivity/videos/test1-2.mp4'
+```
 
 ## Python Usage
 
