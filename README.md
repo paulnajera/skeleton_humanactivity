@@ -11,18 +11,13 @@ You need dependencies below.
   
 Personally, I used the next dependencies:
 Dedicate use of GPU:
--Cuda v.10
--cuDNN v7.4
+  - Cuda v.10
+  - cuDNN v7.4
 Other dependencies:
 - python3
 - tensorflow 1.4.1
-
-### Pre-Install Jetson case
-
-```bash
-$ sudo apt-get install libllvm-7-ocaml-dev libllvm7 llvm-7 llvm-7-dev llvm-7-doc llvm-7-examples llvm-7-runtime
-$ export LLVM_CONFIG=/usr/bin/llvm-config-7 
-```
+Operative System:
+- Windows 10
 
 ### Install
 
@@ -33,8 +28,11 @@ $ git clone https://github.com/paulnajera/skeleton_humanactivity.git
 $ cd skeleton_humanactivity
 $ pip3 install -r requirements.txt
 ```
+If there is a problem installing the requiremets (related to MVS and pycocotools) I followed this steps and it worked:
+https://www.kaggle.com/c/tgs-salt-identification-challenge/discussion/62381
 
 Build c++ library for post processing. See : https://github.com/ildoonet/tf-pose-estimation/tree/master/tf_pose/pafprocess
+*(wig have to be installed in order to run this command)
 ```
 $ cd tf_pose/pafprocess
 $ swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace
@@ -46,7 +44,7 @@ See [experiments.md](./etc/experiments.md)
 
 ### Download Tensorflow Graph File(pb file)
 
-Before running demo, you should download graph files. You can deploy this graph on your mobile or other platforms.
+Before running, you should download graph files. You can deploy this graph on your mobile or other platforms.
 
 - cmu (trained in 656x368)
 - mobilenet_thin (trained in 432x368)
@@ -60,7 +58,7 @@ $ cd models/graph/cmu
 $ bash download.sh
 ```
 
-## Demo
+## Run programs>
 
 ### Test Inference
 
@@ -82,6 +80,10 @@ Then you will see the screen as below with pafmap, heatmap, result and etc.
 ### Realtime Webcam
 
 ```
+$ python run_webcam.py
+```
+Including other options:
+```
 $ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0
 ```
 
@@ -91,7 +93,27 @@ Apply TensoRT
 $ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0 --tensorrt=True
 ```
 
-Then you will see the realtime webcam screen with estimated poses as below. This [Realtime Result](./etcs/openpose_macbook13_mobilenet2.gif) was recored on macbook pro 13" with 3.1Ghz Dual-Core CPU.
+### From video
+
+```
+$ python run_video.py --video=videos/test3.mp4
+```
+
+In both cases, the result is recorded and save in the main folder where the .py are)
+
+### Realtime Webcam skeleton 3D
+
+```
+$ python webcam_3D.pz
+```
+
+### Video skeleton 3D
+
+```
+$ python video_3D.py
+```
+
+
 
 ## Python Usage
 
