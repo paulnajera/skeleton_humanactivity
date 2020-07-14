@@ -10,12 +10,14 @@ You need dependencies below.
   - I copied from the above git repo to modify few things.
   
 Personally, I used the next dependencies:
+
 Dedicate use of GPU:
   - Cuda v.10
   - cuDNN v7.4
 Other dependencies:
 - python3
 - tensorflow 1.4.1
+
 Operative System:
 - Windows 10
 
